@@ -46,6 +46,10 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-health</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-config-yaml</artifactId>
+        </dependency>
         <!-- 3 party dependencies -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
