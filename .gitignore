@@ -1,3 +1,5 @@
 /target/
 /.idea/
 /template-quarkus-app.iml
+
+/src/main/docker/lib-*.zip

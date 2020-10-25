@@ -9,11 +9,12 @@
 
     <properties>
         <quarkus.version>1.8.3.Final</quarkus.version>
-        <lombok.version>1.18.8</lombok.version>
+        <lombok.version>1.18.12</lombok.version>
         <surefire-plugin.version>2.22.1</surefire-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <dd-trace-java.version>0.66.0</dd-trace-java.version>
     </properties>
 
     <dependencyManagement>
@@ -50,10 +51,19 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-config-yaml</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-opentracing</artifactId>
+        </dependency>
         <!-- 3 party dependencies -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.datadoghq</groupId>
+            <artifactId>dd-trace-ot</artifactId>
+            <version>${dd-trace-java.version}</version>
         </dependency>
         <!-- Compiling only -->
         <dependency>
@@ -61,6 +71,11 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.opentracing</groupId>
+            <artifactId>opentracing-api</artifactId>
+            <version>0.32.0</version>
         </dependency>
 
         <!-- test -->

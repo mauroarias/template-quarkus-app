@@ -3,3 +3,7 @@ quarkus:
   swagger-ui:
     path: /swagger-ui.html
     always-include: true
+  jaeger:
+    enabled: false
+    metrics:
+      enabled: true
