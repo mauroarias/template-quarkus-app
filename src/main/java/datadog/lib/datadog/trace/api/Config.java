@@ -1,9 +1,13 @@
 package datadog.lib.datadog.trace.api;
 
+import datadog.lib.datadog.trace.bootstrap.config.provider.ConfigProvider;
 import datadog.trace.api.ConfigDefaults;
 import datadog.trace.api.IdGenerationStrategy;
 import datadog.trace.api.PropagationStyle;
-import datadog.lib.datadog.trace.bootstrap.config.provider.ConfigProvider;
+import lombok.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -28,12 +32,7 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.UUID;
 import java.util.regex.Pattern;
-import lombok.NonNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-/** @deprecated */
-@Deprecated
 public class Config {
     private static final String DEFAULT_PRIORITY_SAMPLING_FORCE = null;
     private static final BitSet DEFAULT_HTTP_SERVER_ERROR_STATUSES = new BitSet();
@@ -50,115 +49,8 @@ public class Config {
     }
 
     private static final Logger log = LoggerFactory.getLogger(Config.class);
-    public static final String CONFIGURATION_FILE = "trace.config";
-    public static final String API_KEY = "api-key";
-    public static final String API_KEY_FILE = "api-key-file";
-    public static final String SITE = "site";
-    public static final String SERVICE_NAME = "service.name";
-    public static final String TRACE_ENABLED = "trace.enabled";
-    public static final String INTEGRATIONS_ENABLED = "integrations.enabled";
-    public static final String ID_GENERATION_STRATEGY = "id.generation.strategy";
-    public static final String WRITER_TYPE = "writer.type";
-    public static final String PRIORITIZATION_TYPE = "prioritization.type";
-    public static final String TRACE_AGENT_URL = "trace.agent.url";
-    public static final String AGENT_HOST = "agent.host";
-    public static final String TRACE_AGENT_PORT = "trace.agent.port";
-    public static final String AGENT_PORT_LEGACY = "agent.port";
-    public static final String AGENT_UNIX_DOMAIN_SOCKET = "trace.agent.unix.domain.socket";
-    public static final String AGENT_TIMEOUT = "trace.agent.timeout";
-    public static final String PRIORITY_SAMPLING = "priority.sampling";
-    public static final String PRIORITY_SAMPLING_FORCE = "priority.sampling.force";
-    /** @deprecated */
-    @Deprecated
-    public static final String TRACE_RESOLVER_ENABLED = "trace.resolver.enabled";
-    public static final String SERVICE_MAPPING = "service.mapping";
-    private static final String ENV = "env";
-    private static final String VERSION = "version";
-    public static final String TAGS = "tags";
-    /** @deprecated */
-    @Deprecated
-    public static final String GLOBAL_TAGS = "trace.global.tags";
-    public static final String SPAN_TAGS = "trace.span.tags";
-    public static final String JMX_TAGS = "trace.jmx.tags";
-    public static final String TRACE_ANALYTICS_ENABLED = "trace.analytics.enabled";
-    public static final String TRACE_ANNOTATIONS = "trace.annotations";
-    public static final String TRACE_EXECUTORS_ALL = "trace.executors.all";
-    public static final String TRACE_EXECUTORS = "trace.executors";
-    public static final String TRACE_METHODS = "trace.methods";
-    public static final String TRACE_CLASSES_EXCLUDE = "trace.classes.exclude";
-    public static final String TRACE_SAMPLING_SERVICE_RULES = "trace.sampling.service.rules";
-    public static final String TRACE_SAMPLING_OPERATION_RULES = "trace.sampling.operation.rules";
-    public static final String TRACE_SAMPLE_RATE = "trace.sample.rate";
-    public static final String TRACE_RATE_LIMIT = "trace.rate.limit";
-    public static final String TRACE_REPORT_HOSTNAME = "trace.report-hostname";
-    public static final String HEADER_TAGS = "trace.header.tags";
-    public static final String HTTP_SERVER_ERROR_STATUSES = "http.server.error.statuses";
-    public static final String HTTP_CLIENT_ERROR_STATUSES = "http.client.error.statuses";
-    public static final String HTTP_SERVER_TAG_QUERY_STRING = "http.server.tag.query-string";
-    public static final String HTTP_CLIENT_TAG_QUERY_STRING = "http.client.tag.query-string";
-    public static final String HTTP_CLIENT_HOST_SPLIT_BY_DOMAIN = "trace.http.client.split-by-domain";
-    public static final String DB_CLIENT_HOST_SPLIT_BY_INSTANCE = "trace.db.client.split-by-instance";
-    public static final String SPLIT_BY_TAGS = "trace.split-by-tags";
-    public static final String SCOPE_DEPTH_LIMIT = "trace.scope.depth.limit";
-    public static final String SCOPE_STRICT_MODE = "trace.scope.strict.mode";
-    public static final String SCOPE_INHERIT_ASYNC_PROPAGATION = "trace.scope.inherit.async.propagation";
-    public static final String PARTIAL_FLUSH_MIN_SPANS = "trace.partial.flush.min.spans";
-    public static final String RUNTIME_CONTEXT_FIELD_INJECTION = "trace.runtime.context.field.injection";
-    public static final String PROPAGATION_STYLE_EXTRACT = "propagation.style.extract";
-    public static final String PROPAGATION_STYLE_INJECT = "propagation.style.inject";
-    public static final String JMX_FETCH_ENABLED = "jmxfetch.enabled";
-    public static final String JMX_FETCH_CONFIG_DIR = "jmxfetch.config.dir";
-    public static final String JMX_FETCH_CONFIG = "jmxfetch.config";
-    /** @deprecated */
-    @Deprecated
-    public static final String JMX_FETCH_METRICS_CONFIGS = "jmxfetch.metrics-configs";
-    public static final String JMX_FETCH_CHECK_PERIOD = "jmxfetch.check-period";
-    public static final String JMX_FETCH_REFRESH_BEANS_PERIOD = "jmxfetch.refresh-beans-period";
-    public static final String JMX_FETCH_STATSD_HOST = "jmxfetch.statsd.host";
-    public static final String JMX_FETCH_STATSD_PORT = "jmxfetch.statsd.port";
-    public static final String HEALTH_METRICS_ENABLED = "trace.health.metrics.enabled";
-    public static final String HEALTH_METRICS_STATSD_HOST = "trace.health.metrics.statsd.host";
-    public static final String HEALTH_METRICS_STATSD_PORT = "trace.health.metrics.statsd.port";
-    public static final String PERF_METRICS_ENABLED = "trace.perf.metrics.enabled";
-    public static final String LOGS_INJECTION_ENABLED = "logs.injection";
-    public static final String PROFILING_ENABLED = "profiling.enabled";
-    /** @deprecated */
-    @Deprecated
-    public static final String PROFILING_URL = "profiling.url";
-    /** @deprecated */
-    @Deprecated
-    public static final String PROFILING_API_KEY_OLD = "profiling.api-key";
-    /** @deprecated */
-    @Deprecated
-    public static final String PROFILING_API_KEY_FILE_OLD = "profiling.api-key-file";
-    /** @deprecated */
-    @Deprecated
-    public static final String PROFILING_API_KEY_VERY_OLD = "profiling.apikey";
-    /** @deprecated */
-    @Deprecated
-    public static final String PROFILING_API_KEY_FILE_VERY_OLD = "profiling.apikey.file";
-    public static final String PROFILING_TAGS = "profiling.tags";
-    public static final String PROFILING_START_DELAY = "profiling.start-delay";
-    public static final String PROFILING_START_FORCE_FIRST = "profiling.experimental.start-force-first";
-    public static final String PROFILING_UPLOAD_PERIOD = "profiling.upload.period";
-    public static final String PROFILING_TEMPLATE_OVERRIDE_FILE = "profiling.jfr-template-override-file";
-    public static final String PROFILING_UPLOAD_TIMEOUT = "profiling.upload.timeout";
-    public static final String PROFILING_UPLOAD_COMPRESSION = "profiling.upload.compression";
-    public static final String PROFILING_PROXY_HOST = "profiling.proxy.host";
-    public static final String PROFILING_PROXY_PORT = "profiling.proxy.port";
-    public static final String PROFILING_PROXY_USERNAME = "profiling.proxy.username";
-    public static final String PROFILING_PROXY_PASSWORD = "profiling.proxy.password";
-    public static final String PROFILING_EXCEPTION_SAMPLE_LIMIT = "profiling.exception.sample.limit";
-    public static final String PROFILING_EXCEPTION_HISTOGRAM_TOP_ITEMS = "profiling.exception.histogram.top-items";
-    public static final String PROFILING_EXCEPTION_HISTOGRAM_MAX_COLLECTION_SIZE = "profiling.exception.histogram.max-collection-size";
-    public static final String PROFILING_EXCLUDE_AGENT_THREADS = "profiling.exclude.agent-threads";
-    public static final String KAFKA_CLIENT_PROPAGATION_ENABLED = "kafka.client.propagation.enabled";
-    public static final String KAFKA_CLIENT_BASE64_DECODING_ENABLED = "kafka.client.base64.decoding.enabled";
-    private static final String TRACE_AGENT_URL_TEMPLATE = "http://%s:%d";
-    private static final String PROFILING_REMOTE_URL_TEMPLATE = "https://intake.profile.%s/v1/input";
-    private static final String PROFILING_LOCAL_URL_TEMPLATE = "http://%s:%d/profiling/v1/input";
     private static final Pattern ENV_REPLACEMENT = Pattern.compile("[^a-zA-Z0-9_]");
-    private static final String SPLIT_BY_SPACE_OR_COMMA_REGEX = "[,\\s]+";
+
     private final String runtimeId;
     private final String apiKey;
     private final String site;
@@ -252,8 +144,7 @@ public class Config {
     private final String configFile;
     private final IdGenerationStrategy idGenerationStrategy;
     private final ConfigProvider configProvider;
-    private static final String PREFIX = "dd.";
-    private static final Config INSTANCE = new Config();
+    private static Config INSTANCE = new Config();
 
     private String profilingApiKeyMasker() {
         return this.apiKey != null ? "****" : null;
@@ -744,6 +635,10 @@ public class Config {
                 }
             }
         }
+    }
+
+    public static void reloadConfig() {
+        INSTANCE = new Config(UUID.randomUUID().toString(), ConfigProvider.createDefault());
     }
 
     public static Config get() {
