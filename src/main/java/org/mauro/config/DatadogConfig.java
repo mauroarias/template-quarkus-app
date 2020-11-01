@@ -1,10 +1,9 @@
 package org.mauro.config;
 
-import datadog.lib.datadog.opentracing.QuarkusDDTracer;
-import datadog.lib.datadog.trace.api.Config;
 import io.opentracing.util.GlobalTracer;
 import io.quarkus.runtime.Startup;
 import org.jboss.logging.Logger;
+import quarkus.datadog.opentracing.QuarkusDDTracer;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -18,7 +17,6 @@ public class DatadogConfig {
     @PostConstruct
     void startup() {
         log.info("post constructor");
-        Config.reloadConfig();
         configDD();
     }
 
